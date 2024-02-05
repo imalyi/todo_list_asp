@@ -1,0 +1,47 @@
+﻿@model ExpensesAppTracker.Models.ReportsViewModel
+@{
+    Layout = "_LayoutExpensesApp";
+}
+@{
+    ViewData["Title"] = "Categories";
+}
+<h1>Reports</h1>
+
+<table>
+    <tr>
+        <th>Total Money Spent in All Categories</th>
+    </tr>
+    <tr>
+        <td>@Model.TotalMoneySpent</td>
+    </tr>
+</table>
+
+<h2>Money Spent Per Day</h2>
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Total Money Spent</th>
+    </tr>
+    @foreach (var dailyReport in Model.MoneySpentPerDay)
+    {
+        <tr>
+            <td>@dailyReport.Date.ToShortDateString()</td>
+            <td>@dailyReport.TotalMoneySpent</td>
+        </tr>
+    }
+</table>
+
+<h2>Money Spent Per Month</h2>
+<table>
+    <tr>
+        <th>Year-Month</th>
+        <th>Total Money Spent</th>
+    </tr>
+    @foreach (var monthlyReport in Model.MoneySpentPerMonth)
+    {
+        <tr>
+            <td>@($"{monthlyReport.Year}-{monthlyReport.Month}")</td>
+            <td>@monthlyReport.TotalMoneySpent</td>
+        </tr>
+    }
+</table>
